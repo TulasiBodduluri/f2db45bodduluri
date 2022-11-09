@@ -1,9 +1,15 @@
 var Employee = require('../models/employee'); 
- 
-// List of all Costumes 
-exports.employee_list = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Employee list'); 
-}; 
+ // List of all Costumes 
+exports.employee_list = async function(req, res) { 
+    try{ 
+        theEmployees = await Employee.find(); 
+        res.send(theEmployees); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
+};
  
 // for a specific Costume. 
 exports.employee_detail = function(req, res) { 
