@@ -2,11 +2,11 @@ extends layout
 
 block content
   h1= title
-  - var results = [{"ID": "1234", "age": 30, "salary": 23000.0}, {"ID": "4567", "age": 45, "salary": 36005.56}, {"ID": "7654", "age": 25, "salary": 87659.78}]
+  - var results = results
         div(class = 'container-fluid')
             div(class = 'row')
                 each emp,i in results 
-                    div(class="col-sm-2",onClick=`buy(${i})`) ID: #{emp["ID"]} <br> Age: #{emp["age"]} <br> Salary: #{emp["salary"]}
+                    div(class="col-sm-2",onClick=`buy(${i})`) ID: #{emp["ID"]} <br/> Age: #{emp["age"]} <br/> Salary: #{emp["salary"]}
                         script.
                             function buy(value) {
                                 alert(`You purchased item ${value}`)
