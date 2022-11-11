@@ -25,8 +25,19 @@ exports.employee_view_all_Page = async function(req, res) {
 }; 
  
 // for a specific Costume. 
-exports.employee_detail = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Employee detail: ' + req.params.id); 
+//exports.employee_detail = function(req, res) { 
+ //   res.send('NOT IMPLEMENTED: Employee detail: ' + req.params.id); 
+//}; 
+// for a specific Costume. 
+exports.employee_detail = async function(req, res) { 
+    console.log("detail"  + req.params.id) 
+    try { 
+        result = await Employee.findById( req.params.id) 
+        res.send(result) 
+    } catch (error) { 
+        res.status(500) 
+        res.send(`{"error": document for id ${req.params.id} not found`); 
+    } 
 }; 
  
 // Handle Costume create on POST. 
@@ -60,6 +71,26 @@ exports.employee_delete = function(req, res) {
 }; 
  
 // Handle Costume update form on PUT. 
-exports.employee_update_put = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Employee update PUT' + req.params.id); 
-};
+//exports.employee_update_put = function(req, res) { 
+ //   res.send('NOT IMPLEMENTED: Employee update PUT' + req.params.id); 
+//};
+// Handle Costume update form on PUT. 
+exports.employee_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await Employee.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.ID)  
+               toUpdate.ID = req.body.ID; 
+        if(req.body.age) toUpdate.age = req.body.age; 
+        if(req.body.salary) toUpdate.salary = req.body.salary; 
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`); 
+    } 
+}; 
