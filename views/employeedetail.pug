@@ -1,0 +1,22 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let id = toShow._id 
+  - let ID = toShow.ID
+  - let age = toShow.age 
+  - let salary = toShow.salary
+  div 
+    div.row 
+      div(class='employeeAttr mr-3') Employee id is: 
+      div #{id} 
+    div.row 
+      div(class='employeeAttr mr-3') Employee ID is: 
+      div #{ID} 
+    div.row 
+      div(class='employeeAttr mr-3') Employee age is: 
+      div #{age} 
+    div.row 
+      div(class='employeeAttr mr-3') Employee salary is: 
+      div #{salary} 

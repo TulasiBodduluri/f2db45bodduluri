@@ -6,3 +6,25 @@ body {
 a {
   color: #00B7FF;
 }
+.employeeAttr { 
+  background-color: rgb(182, 134, 31); 
+  width: 120px; 
+} 
+.employeedelete {
+  background-color: rgb(127, 187, 255);
+  width: 190px;
+}
+.employeeupdate {
+  background-color: rgb(235, 13, 116);
+  width: 190px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-style: italic;
+}
+
+.b {
+  font-style: italic;
+  background-color: rgb(131, 27, 84);
+  text-align: center;
+ font-family: sans-serif;
+  
+ }
