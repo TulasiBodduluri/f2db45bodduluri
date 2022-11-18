@@ -1,13 +1,15 @@
 extends layout
-
 block content
   h1= title
-  - var results = results
-        div(class = 'container-fluid')
-            div(class = 'row')
-                each emp,i in results 
-                    div(class="col-sm-2",onClick=`buy(${i})`) ID: #{emp["ID"]} <br/> Age: #{emp["age"]} <br/> Salary: #{emp["salary"]}
-                        script.
-                            function buy(value) {
-                                alert(`You purchased item ${value}`)
-                            }   
+  - let result=results 
+  div(class="container-fluid")
+   div(class="container-fluid")
+    div(class="row m-1")
+     each item in result
+      -let destination = `dispatch(\"/employee/update?id=${item._id}\")`
+      div(class="row-sm-2", class="m-1") Item#{item.ID}(#{item.age}) is #{item.salary}
+       button.btn( class="btn-primary ml-1", onclick= destination) Update
+  script.
+   function dispatch(path){
+    window.location.href=path
+   }
