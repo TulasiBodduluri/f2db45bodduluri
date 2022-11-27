@@ -25,10 +25,10 @@ res.redirect("/login");
 /* GET employee */ 
 router.get('/', employee_controlers.employee_view_all_Page ); 
 /* GET detail employee page */
-/* GET create employee page */ 
-router.get('/create', employee_controlers.employee_create_Page);  
 router.get('/detail', employee_controlers.employee_view_one_Page);
+/* GET create employee page */ 
+router.get('/create',secured, employee_controlers.employee_create_Page);  
 /* GET create update page */ 
 router.get('/update',secured, employee_controlers.employee_update_Page);  
-router.get('/delete', employee_controlers.employee_delete_Page); 
+router.get('/delete',secured,employee_controlers.employee_delete_Page); 
 module.exports = router; 
