@@ -1,6 +1,9 @@
 const mongoose = require("mongoose")
 const employeeSchema = mongoose.Schema({
-    ID: String,
+    ID: {
+        type: String,
+        maxLength: 7
+    },
     age: String,
     salary: Number
 })

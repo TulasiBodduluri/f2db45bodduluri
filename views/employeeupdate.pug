@@ -2,35 +2,45 @@ extends layout
  
 block content 
   h1= title 
+
   if (toShow == null) 
     h2 No instance to update 
   else 
-  form(id='EmployeeForm', action="/resource/employee", method="PUT") 
-    div.form-group 
-        label.employeeAttr(for='ID') Employee id 
-        input#ID(type='text', name='ID') 
-    div.form-group 
-        label.employeeAttr(for='age') Employee age 
-        input#age(type='text', name='age') 
-    div.form-group 
-        label.employeeAttr(for='salary') Employee salary
-        input#salary(type='number', name='salary') 
-    input(type="submit") 
+   - let id = toShow.id
+   - let ID = toShow.ID
+   - let age = toShow.age
+   - let salary = toShow.salary
  
-  script. 
-    document.forms['EmployeeForm'].addEventListener('submit', (event) => { 
-      event.preventDefault(); 
-      // TODO do something here to show user that form is being submitted 
-      fetch(event.target.action, { 
-        method: 'POST', 
+   div.row(class='mb-2') 
+     div.mr-1 ID is 
+     div #{id} 
+   - let actionid = "/resource/employee/" + id
+   form(id='EmployeeForm', action=actionid, method="PUT") 
+     div.form-group 
+         label.employeeAttr(for='ID') Employee ID 
+         input#ID(type='text', name='ID', value=ID) 
+     div.form-group 
+         label.employeeAttr(for='age ') Employee age  
+         input#age(type='text', name='age',value=age) 
+     div.form-group 
+         label.employeeAttr(for='salary') Employee salary
+         input#price(type='number', name='salary', value=salary) 
+     input(type="submit") 
+ 
+   script. 
+     document.forms['EmployeeForm'].addEventListener('submit', (event) => { 
+       event.preventDefault(); 
+       // TODO do something here to show user that form is being submitted 
+       fetch(event.target.action, { 
+         method: 'PUT', 
         body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
-      }).then((resp) => { 
-        return resp.json(); // or resp.text() or whatever the server sends 
-      }).then((body) => { 
-        alert("Save succeded") 
-        // TODO handle body 
-      }).catch((error) => { 
+       }).then((resp) => { 
+         return resp.json();  // resp.json();  or whatever the server sends 
+       }).then((body) => { 
+         alert("Update succeded") 
+         // TODO handle body 
+       }).catch((error) => { 
         // TODO handle error 
-        alert("Save failed " + error ) 
-      }); 
-    }); 
+         alert("Update failed " + error ) 
+       }); 
+     }); 
